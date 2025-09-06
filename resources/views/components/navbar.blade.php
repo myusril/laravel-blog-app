@@ -1,9 +1,9 @@
 <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     @if (Auth::user())
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">Clean Blog</span>
             </a>
 
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -23,7 +23,7 @@
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                         <li>
-                            <a href="/dashboard/blog-listing"
+                            <a href="/dashboard/posts"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                         </li>
                         <li>
@@ -44,7 +44,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">Clean Blog</span>
             </a>
             <div class="hidden md:flex md:order-2 space-x-3 rtl:space-x-reverse">
                 <a href="/login"

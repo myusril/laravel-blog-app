@@ -10,9 +10,18 @@
 </head>
 
 <body>
-    {{ $slot }}
+    <x-dashboard-navbar></x-dashboard-navbar>
+
+    <x-dashboard-sidebar></x-dashboard-sidebar>
+
+    <main class="p-4 md:ml-64 h-auto pt-20">
+        {{ $slot }}
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+
+    <script src="/js/category-slug.js"></script>
+    <script src="/js/post-slug.js"></script>
 </body>
 
 </html>
