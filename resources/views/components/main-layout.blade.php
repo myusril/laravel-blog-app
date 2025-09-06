@@ -21,6 +21,9 @@
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+        <script src="/js/show-hide-replay.js"></script>
+        <script src="/js/filter.js"></script>
+        <script src="/js/dropdown.js"></script>
     </div>
 </body>
 

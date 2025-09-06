@@ -1,19 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\AuthMiddleware;
-use App\Http\Controllers\Dashboard\Blog;
+use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\GuestMiddleware;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Middleware\GuestMiddleware;
-use App\Http\Middleware\UserMiddleware;
 
 Route::get('/', [HomeController::class, 'home']);
+Route::get('/post/{slug}', [HomeController::class, 'showSinglePost']);
 
 Route::middleware(GuestMiddleware::class)->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm']);
@@ -31,6 +33,26 @@ Route::middleware(GuestMiddleware::class)->group(function () {
 });
 
 Route::middleware(UserMiddleware::class)->group(function () {
-    Route::get('/dashboard/blog-listing', [Blog::class, 'blogListing']);
+    Route::controller(PostController::class)->group(function () {
+        Route::get('/dashboard/posts', 'indexPost');
+        Route::get('/dashboard/posts/add', 'showAddPostForm');
+        Route::post('/dashboard/posts/add', 'actionAddPost');
+        Route::get('/dashboard/posts/edit/{id}', 'showEditPostForm');
+        Route::post('/dashboard/posts/edit/{id}', 'actionEditPost');
+        Route::post('/dashboard/posts/delete/{id}', 'actionDeletePost');
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/dashboard/categories', 'indexCategory');
+        Route::get('/dashboard/categories/add', 'showAddCategoryForm');
+        Route::post('/dashboard/categories/add', 'actionAddCategory');
+        Route::get('/dashboard/categories/edit/{id}', 'showEditCategoryForm');
+        Route::post('/dashboard/categories/edit/{id}', 'actionEditCategory');
+        Route::post('/dashboard/categories/delete/{id}', 'actionDeleteCategory');
+    });
+
     Route::post('/logout', [LogoutController::class, 'actionLogout']);
+
+    Route::post('/post/{slug}/comment', [CommentController::class, 'store']);
+    Route::post('/comment/{id}/reply', [CommentController::class, 'reply']);
 });
